@@ -1,0 +1,185 @@
+*:fullscreen
+*:-ms-fullscreen,
+*:-webkit-full-screen,
+*:-moz-full-screen {
+   overflow: auto !important;
+}
+
+.logged {
+    padding-top: 15px;
+    padding-right: 10px;
+    color: #fff;
+}
+
+a.btn-red {
+    color: #fff !important;
+}
+
+/* CRM Clients */
+.livesearch {
+    display: none;
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+}
+
+ul.clientlist {
+    list-style-type: none;
+}
+
+ul.clientlist li {
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.optPerm {
+    background-color: #999;
+    padding: 5px;
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.optPerm label {
+    margin-left: 5px;
+}
+
+/* Calendario */
+.calendario {
+    position: relative;
+}
+
+.calendario .mes {
+    display: none;
+}
+
+.calendario .mes_title {
+    text-transform: uppercase;
+    background-color: #001b5d;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+}
+
+.calendario .day_title {
+    font-weight: bold;
+    text-align: center;
+}
+
+.calendario .day {
+    text-align: center;
+}
+
+.calendario #vai, .calendario #volta {
+    position: absolute;
+    background-color: rgb(243, 238, 238);
+    padding: 8px 20px;
+    font-size: 18px
+}
+
+.calendario #vai:hover, .calendario #volta:hover {
+    background-color: #ccc;
+}
+
+.calendario #volta {
+    left: 0;
+    top: 0;
+}
+
+.calendario #vai {
+    right: 0;
+    top: 0;
+}
+
+/* INSERÇÃO NOVA - TMTORRES */
+fieldset{
+    border: 2px solid #001b5d;
+    margin: 0 2px;
+    padding: 0.75em 2em;  
+}
+
+legend {
+    display: block;
+    width: auto;
+    padding: 0 20px;
+    margin-bottom: 20px;
+    font-size: 21px;
+    /* line-height: inherit; */
+    color: #001b5d;
+    border: 0;
+    /* border-bottom: 1px solid #e5e5e5; */
+    font-weight: bold;
+    text-transform: capitalize;
+    font-style: italic;
+}
+
+/*TÍTULO DAS SEÇÕES*/
+.content-header > h1 {
+    margin: 0;
+    font-size: 24px;
+    padding-top: 10px;
+    font-style: italic;
+    font-weight: bold;
+    text-transform: capitalize;
+    color: #001b5d;
+}
+
+.content {
+    min-height: 150px!important;
+}
+
+.btn-goBack {
+    background: #6200ff;
+    border: none;
+    color: #fff;
+    transition: .4s all;
+}
+
+.btn-goBack:hover {
+    background: #0014ff;
+    transition: .4s all;
+}
+
+.btn-register {
+    background: #47b900;
+    border: none;
+    color: #fff;
+    transition: .4s all;
+}
+
+.btn-register:hover {
+    background: #3fa500;
+    transition: .4s all;
+    color: #fff;
+}
+
+.btn-cancel {
+    background: #ca002c;
+    border: none;
+    color: #fff;
+    transition: .4s all;
+}
+
+.btn-cancel:hover {
+    background: #a90c2e;
+    transition: .4s all;
+    color: #fff;
+}
