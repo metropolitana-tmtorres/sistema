@@ -3064,7 +3064,8 @@ class Home extends Controller
         $newCnpj = str_replace(['.', '/', '-'], [''], $correctCnpj);
 
         $checkDuplicated = $this->fornecedorModel->checkDuplicated($correctCnpj);
-
+        $info = null;
+        $data = null;
         if (empty($checkDuplicated)) :
 
             $url = "https://receitaws.com.br/v1/cnpj/" . $newCnpj;
@@ -3073,126 +3074,25 @@ class Home extends Controller
             // Will dump a beauty json :3
             $r = json_decode($result, true);
 
-            if ($r["situacao"] == "ATIVA") {
-                $alert = "<div class='alert alert-success'>Situação do CNPJ: " . $r["situacao"] . "</div>";
-                $disabled = "";
+            if (isset($r["status"]) && $r["status"] === "ERROR") {
+                $info = $r["message"] ;
             } else {
-                $alert = "<div class='alert alert-danger'>Situação do CNPJ: " . $r["situacao"] . "</div>";
-                $disabled = " disabled='true' ";
+                $info = "Situação do CNPJ: " . $r["situacao"];
+                $data = $r;
             }
 
-            if (isset($r["status"]) && $r["status"] === "ERROR") {
-                $return = "<div class='alert alert-danger'>" . $r["message"] . "</div>";
-            } else {
-                $return = $alert . "
-            <div class='form-group'>
-                <label for=''>Razão Social</label>
-                <input id='razao' value='" . $r['nome'] . "' type='text' " . $disabled . "required name='razao' placeholder='Informe a Razão Social' class='form-control'>
-            </div>
-            <div class='form-group'>
-                <label for=''>Nome Fantasia</label>
-                <input id='fantasia' value='" . $r['fantasia'] . "' type='text' required " . $disabled . "name='fantasia' placeholder='Informe o Nome Fantasia' class='form-control'>
-            </div>
-            <div class='form-group'>
-                <label for=''>Contato</label>
-                <input type='text'  " . $disabled . "name='contato' class='form-control' placeholder='Informe o contato do fornecedor'>
-            </div>
-            <div class='form-group'>
-                <label for=''>E-Mail</label>
-                <input type='mail'  " . $disabled . "name='email' class='form-control' placeholder='Informe o e-mail'>
-            </div>
-            <div class='form-group'>
-                <label for=''>Telefone</label>
-                <input type='text' " . $disabled . "name='telefone' id='celular' class='form-control' placeholder='Informe o telefone'>
-            </div>
-            <div class='form-group'>
-                <label for=''>CEP</label>
-                <input id='cep' value='" . $r['cep'] . "' type='text' " . $disabled . "name='cep' class='form-control' placeholder='Informe o CEP'>
-                <input type='button' id='VerificarCEP' class='btn btn-primary' value='Verificar' />
-            </div>
-            <div class='form-group'>
-                <label for=''>Endereço</label>
-                <input id='endereco' value='" . $r['logradouro'] . ", " . $r['numero'] . "' type='text' " . $disabled . "name='endereco' class='form-control' placeholder='Informe o endereço'>
-            </div>
-            <div class='form-group'>
-                <label for=''>Complemento</label>
-                <input id='complemento' value='" . $r['complemento'] . "' type='text' " . $disabled . "name='complemento' class='form-control'  placeholder='Informe o complemento'>
-            </div>
-            <div class='form-group'>
-                <label for=''>Cidade</label>
-                <input id='cidade' value='" . $r['municipio'] . "' type='text' " . $disabled . "name='cidade' class='form-control' placeholder='Informe a cidade' >
-            </div>
-            <div class='form-group'>
-                <label for=''>Estado</label>
-                <input id='estado' type='text' " . $disabled . "name='estado' class='form-control' placeholder='Informe o estado' >
-            </div>
-            <div class='form-group'>
-                <label for=''>Fornecedor VIP?</label>
-                <select " . $disabled . "name='vip' class='form-control' onchange='showVip(this.value);'>
-                <option value='' selected disabled>Selecione uma Opção</option>
-                <option value='y'>Sim</option>
-                <option value='n'>Não</option>
-                </select>
-            </div>";
-            }
 
         else :
-            $alert = "<div class='alert alert-danger'>CNPJ já cadastrado no sistema.</div>";
-            $disabled = " disabled='true' ";
-            $return = $alert . "
-            <div class='form-group'>
-                <label for=''>Razão Social</label>
-                <input id='razao' value='' type='text' " . $disabled . "required name='razao' placeholder='Informe a Razão Social' class='form-control'>
-            </div>
-            <div class='form-group'>
-                <label for=''>Nome Fantasia</label>
-                <input id='fantasia' value='' type='text' required " . $disabled . "name='fantasia' placeholder='Informe o Nome Fantasia' class='form-control'>
-            </div>
-            <div class='form-group'>
-                <label for=''>Contato</label>
-                <input type='text'  " . $disabled . "name='contato' class='form-control' placeholder='Informe o contato do fornecedor'>
-            </div>
-            <div class='form-group'>
-                <label for=''>E-Mail</label>
-                <input type='mail'  " . $disabled . "name='email' class='form-control' placeholder='Informe o e-mail'>
-            </div>
-            <div class='form-group'>
-                <label for=''>Telefone</label>
-                <input type='text' " . $disabled . "name='telefone' id='celular' class='form-control' placeholder='Informe o telefone'>
-            </div>
-            <div class='form-group'>
-                <label for=''>CEP</label>
-                <input id='cep' value='' type='text' " . $disabled . "name='cep' class='form-control' placeholder='Informe o CEP'>
-                <input type='button' id='VerificarCEP' class='btn btn-primary' value='Verificar' />
-            </div>
-            <div class='form-group'>
-                <label for=''>Endereço</label>
-                <input id='endereco' value='' type='text' " . $disabled . "name='endereco' class='form-control' placeholder='Informe o endereço'>
-            </div>
-            <div class='form-group'>
-                <label for=''>Complemento</label>
-                <input id='complemento' value='' type='text' " . $disabled . "name='complemento' class='form-control'  placeholder='Informe o complemento'>
-            </div>
-            <div class='form-group'>
-                <label for=''>Cidade</label>
-                <input id='cidade' value='' type='text' " . $disabled . "name='cidade' class='form-control' placeholder='Informe a cidade' >
-            </div>
-            <div class='form-group'>
-                <label for=''>Estado</label>
-                <input id='estado' type='text' " . $disabled . "name='estado' class='form-control' placeholder='Informe o estado' >
-            </div>
-            <div class='form-group'>
-                <label for=''>Fornecedor VIP?</label>
-                <select " . $disabled . "name='vip' class='form-control' onchange='showVip(this.value);'>
-                <option value='' selected disabled>Selecione uma Opção</option>
-                <option value='y'>Sim</option>
-                <option value='n'>Não</option>
-                </select>
-            </div>";
+            $info = "CNPJ já cadastrado no sistema.";
+
         endif;
 
-        echo $return;
+        echo json_encode([
+                'info' => $info,
+                'data' => $data
+        ]);
     }
+
     public function checkCnpjFornecedor($cnpj, $cnpj2)
     {
         $correctCnpj = $cnpj . "/" . $cnpj2;
@@ -4330,6 +4230,7 @@ class Home extends Controller
             // var_dump($permissions); exit;
 
             $cargos = $this->admModel->getAllJobRole();
+            $obj = null;
             if (isset($id) && $id != NULL) {
                 $obj = $this->fornecedorModel->getFornecedorByID($id);
             }

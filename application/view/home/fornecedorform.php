@@ -325,98 +325,88 @@
                 <fieldset>
                   <legend>Documentações - Arquivos</legend>
 
-                  <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                    <div class=form-group>
-                      <label for=''>CPF</label>
-                      <input class='form-control' type=file name='fileFornecedorCPF'>
-                      <?php
-                      $file =  URL . '' . $obj->fileFornecedorCPF;
-                      if (file_exists($obj->fileFornecedorCPF)) {
-                      ?>
-                        <a data-fancybox data-type="pdf" href='<?= $file ?>'>Visualizar RG</a>
-                      <?php
-                      }
-                      ?>
-
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                        <div class=form-group>
+                            <label for=''>CPF</label>
+                            <input class='form-control' type=file name='fileFornecedorCPF'>
+                            <?php
+                            if ($obj && file_exists($obj->fileFornecedorCPF)) {
+                                $file = URL . '' . $obj->fileFornecedorCPF;
+                            ?>
+                                <a data-fancybox data-type="pdf" href='<?= $file ?>'>Visualizar RG</a>
+                            <?php } ?>
+                        </div>
                     </div>
-                  </div>
 
-                  <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                    <div class=form-group>
-                      <label for=''>RG</label>
-                      <input class='form-control' type=file name='fileFornecedorRG'>
-                      <?php
-                      $file =  URL . '' . $obj->fileFornecedorRG;
-                      if (file_exists($obj->fileFornecedorRG)) {
-                      ?>
-                        <a data-fancybox data-type="pdf" href='<?= $file ?>'>Visualizar RG</a>
-                      <?php
-                      }
-                      ?>
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                        <div class=form-group>
+                            <label for=''>RG</label>
+                            <input class='form-control' type=file name='fileFornecedorRG'>
+                            <?php
+                            if ($obj && file_exists($obj->fileFornecedorRG)) {
+                                $file = URL . '' . $obj->fileFornecedorRG;
+                                ?>
+                                <a data-fancybox data-type="pdf" href='<?= $file ?>'>Visualizar RG</a>
+                            <?php } ?>
 
+                        </div>
                     </div>
-                  </div>
 
-                  <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                    <div class=form-group>
-                      <label for=''>Comprovante de endereço</label>
-                      <input class='form-control' type=file name='fileFornecedorComprovanteEndereço'>
-                      <?php
-                      $file =  URL . '' . $obj->fileFornecedorComprovanteEndereço;
-                      if (file_exists($obj->fileFornecedorComprovanteEndereço)) {
-                      ?>
-                        <a data-fancybox data-type="pdf" href='<?= $file ?>'>Visualizar Comprovante de Endereço</a>
-                      <?php
-                      }
-                      ?>
-
-
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                        <div class=form-group>
+                            <label for=''>Comprovante de endereço</label>
+                            <input class='form-control' type=file name='fileFornecedorComprovanteEndereço'>
+                            <?php
+                            if ($obj && file_exists($obj->fileFornecedorComprovanteEndereço)) {
+                                $file = URL . '' . $obj->fileFornecedorComprovanteEndereço;
+                                ?>
+                                <a data-fancybox data-type="pdf" href='<?= $file ?>'>Visualizar Comprovante de
+                                    Endereço</a>
+                            <?php } ?>
+                        </div>
                     </div>
-                  </div>
 
-                  <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                    <div class=form-group>
-                      <label for=''>Contrato Social</label>
-                      <input class='form-control' type=file name='fileFornecedorContratoSocial'>
-                      <?php
-                      $file =  URL . '' . $obj->fileFornecedorContratoSocial;
-                      if (file_exists($obj->fileFornecedorContratoSocial)) {
-                      ?>
-                        <a data-fancybox data-type="pdf" href='<?= $file ?>'>Visualizar Contrato Social</a>
-                      <?php
-                      }
-                      ?>
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                        <div class=form-group>
+                            <label for=''>Contrato Social</label>
+                            <input class='form-control' type=file name='fileFornecedorContratoSocial'>
+                            <?php
+                            if ($obj && file_exists($obj->fileFornecedorContratoSocial)) {
+                                $file = URL . '' . $obj->fileFornecedorContratoSocial;
+                                ?>
+                                <a data-fancybox data-type="pdf" href='<?= $file ?>'>Visualizar Contrato Social</a>
+                            <?php } ?>
+                        </div>
                     </div>
-                  </div>
 
                   <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                     <div class=form-group>
                       <label for=''>CNPJ</label>
                       <input class='form-control' type=file name='fileFornecedorCartãoCNPJ'>
                       <?php
-                      $file =  URL . '' . $obj->fileFornecedorCartãoCNPJ;
-                      if (file_exists($obj->fileFornecedorCartãoCNPJ)) {
+                      if ($obj && file_exists($obj->fileFornecedorCartãoCNPJ)) {
+                          $file =  URL . '' . $obj->fileFornecedorCartãoCNPJ;
                       ?>
                         <a data-fancybox data-type="pdf" href='<?= $file ?>'>Visualizar CNPJ</a>
-                      <?php
-                      }
-                      ?>
+                      <?php } ?>
                     </div>
                   </div>
 
-                  <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                    <div class=form-group>
-                      <label for=''>Contrato de prestação de serviço</label>
-                      <input class='form-control' type=file name='fileFornecedorContratoPrestação'>
-                      <?php
-                      $file =  URL . '' . $obj->fileFornecedorContratoPrestação;
-                      if (file_exists($obj->fileFornecedorContratoPrestação)) { ?>
-                        <a data-fancybox data-type="pdf" href='<?= $file ?>'>Visualizar Contrato de prestação de serviço</a>
-                      <?php } else {
-                        echo "Não enviado.<br>";
-                      } ?>
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                        <div class=form-group>
+                            <label for=''>Contrato de prestação de serviço</label>
+                            <input class='form-control' type=file name='fileFornecedorContratoPrestação'>
+                            <?php
+                            if ($obj && file_exists($obj->fileFornecedorContratoPrestação)) {
+                                $file = URL . '' . $obj->fileFornecedorContratoPrestação;
+                                ?>
+                                <a data-fancybox data-type="pdf" href='<?= $file ?>'>Visualizar Contrato de prestação de
+                                    serviço</a>
+                            <?php } else {
+                                echo "Não enviado.<br>";
+                            } ?>
+                        </div>
                     </div>
-                  </div>
 
                 </fieldset>
               </div>
