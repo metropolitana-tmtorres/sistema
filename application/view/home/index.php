@@ -8,12 +8,14 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="<?php echo URL; ?>bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo URL; ?>plugins/toastr/toastr.min.css"/>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?php echo URL; ?>bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="<?php echo URL; ?>bower_components/Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo URL; ?>dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="<?php echo URL; ?>dist/css/AdminLTE.css">
+  <link rel="stylesheet" href="<?php echo URL; ?>css/style.css">
   <!-- iCheck -->
   <link rel="stylesheet" href="<?php echo URL; ?>plugins/iCheck/square/blue.css">
 
@@ -34,39 +36,51 @@
   </div>
   <!-- /.login-logo -->
     <?php if(isset($_GET['error']) && $_GET['error'] == "data") : ?>
-        <div class="alert alert-danger">Seu e-mail ou senha está incorreto</div>
+        <?php echo "<script>$(function () {toastr['warning']('E-mail ou senha está incorreto')}); </script>";?>
     <?php elseif(isset($_GET['error']) && $_GET['error'] == "log") : ?>
         <div class="alert alert-danger">Você precisa preencher seus dados de acesso abaixo para acessar o sistema</div>
+        <?php echo "<script>$(function () {toastr['warning']('Preencher seus dados de acesso abaixo para acessar o sistema')}); </script>";?>
     <?php elseif(isset($_GET['error']) && $_GET['error'] == "inactive") : ?>
         <div class="alert alert-danger">Este usuário esta inativo e não pode acessar o sistema</div>
+        <?php echo "<script>$(function () {toastr['warning']('Usuário esta inativo e não pode acessar o sistema')}); </script>";?>
     <?php elseif(isset($_GET['logout']) && $_GET['logout'] == "true") : ?>
-        <div class="alert alert-success">Você saiu do sistema com segurança</div>
+        <?php echo "<script>$(function () {toastr['success']('Você saiu do sistema com segurança')}); </script>";?>
     <?php endif; ?>
 
   <div id="loginbox" class="login-box-body">
-    <p class="login-box-msg">Informe seus dados para acessar</p>
+    <!--p class="login-box-msg">Informe seus dados para acessar</p-->
 
     <form action="<?php echo URL; ?>home/login" method="post">
+
       <div class="form-group has-feedback">
+      <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
         <input type="email" required class="form-control" name="mail" placeholder="E-Mail">
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
         <input type="password" class="form-control" required name="pass" placeholder="Senha">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
-        <div class="col-xs-8">
+      <div class="col-md-6">
+          <!-- Checkbox -->
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked />
+            <label class="form-check-label" for="loginCheck"> Lembrar acesso </label>
+          </div>
+        </div>
+
+        <!-- /.col -->
+        <div class="col-xs-12">
+          <button type="submit" id="loginbtn" class="btn btn-primary btn-block btn-flat">Acessar</button>
+        </div>
+
+        <!--div class="col-xs-6">
           <div class="checkbox icheck">
             <label>
               <input type="checkbox"> Lembrar-me
             </label>
           </div>
-        </div>
-        <!-- /.col -->
-        <div class="col-xs-4">
-          <button type="submit" id="loginbtn" class="btn btn-primary btn-block btn-flat">Acessar</button>
-        </div>
+        </div-->
         <!-- /.col -->
       </div>
     </form>
@@ -82,6 +96,7 @@
 <!-- iCheck -->
 <script src="<?php echo URL; ?>plugins/iCheck/icheck.min.js"></script>
 <script src="<?php echo URL; ?>js/application.js"></script>
+<script src="<?php echo URL; ?>plugins/toastr/toastr.min.js"></script>
 <script>
   $(function () {
     // $('#fullscreen').trigger('click');

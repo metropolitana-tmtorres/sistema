@@ -61,7 +61,7 @@ $approval = $approvalClient + $approvalAccount + $approvalFornecedor + $approval
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css">
 
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo URL; ?>dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="<?php echo URL; ?>dist/css/AdminLTE.css">
   <!-- Select2 Style -->
   <link rel="stylesheet" href="<?php echo URL; ?>css/select2.css">
 

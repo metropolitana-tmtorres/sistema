@@ -183,3 +183,23 @@ legend {
     transition: .4s all;
     color: #fff;
 }
+
+/* LOGIN */
+.login-page, .register-page {
+    height: auto;
+    background: linear-gradient(to top, #0078ff 0%, #00136c 100%)!important;
+}
+
+.login-box-body, .register-box-body {
+    background: transparent;
+    padding: 20px;
+    border-top: 0;
+    color: #666;
+    border-radius: 20px;
+}
+
+.form-check{
+    margin-bottom: 10px;
+    color: #fff;
+    font-weight: 200;
+}
