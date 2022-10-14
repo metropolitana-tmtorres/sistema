@@ -144,7 +144,7 @@
   <script>
  $(document).ready(function(){
       $(".money").mask("#.##0,00", {reverse: true});
-      $('#cep').mask('99.999-999');
+      $('#cep').mask('99999-999');
       $('#cpf').mask('999.999.999-99');
       $('#rg').mask('99.999.999-9');
       $('#celular').mask('(99) 99999-9999');

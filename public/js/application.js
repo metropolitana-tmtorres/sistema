@@ -69,7 +69,27 @@ $(function () {
 
                 $.ajax(url + "/home/checkCnpj/" + cnpj)
                     .done(function (result) {
-                        $('#cnpjDetails').html(result);
+                        $('#msg').html(result.info);
+                        if(!result.data){
+                            $('#msg').addClass('alert-danger').removeClass('alert-success')
+                            $('#razao').val("").removeAttr('readonly')
+                            $('#fantasia').val("").removeAttr('readonly')
+                            $('#cep').val("");
+                            $('#endereco').val("")
+                            $('#complemento').val("")
+                            $('#cidade').val("")
+                            $('#estado').val("")
+                        }else{
+                            $('#msg').addClass('alert-success').removeClass('alert-danger')
+                            $('#razao').val(result.data.nome).attr('readonly',true)
+                            $('#fantasia').val(result.data.fantasia).attr('readonly',true)
+                            $('#cep').val(result.data.cep.replace('.',''))
+                            $('#endereco').val(result.data.logradouro + ", " + result.data.numero)
+                            $('#complemento').val(result.data.complemento)
+                            $('#cidade').val(result.data.municipio)
+                            $('#estado').val(result.data.uf)
+                        }
+                        $('#msg').removeClass('hidden')
                     })
                     .fail(function () {
 

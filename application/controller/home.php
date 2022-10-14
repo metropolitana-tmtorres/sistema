@@ -3066,30 +3066,33 @@ class Home extends Controller
         $checkDuplicated = $this->fornecedorModel->checkDuplicated($correctCnpj);
         $info = null;
         $data = null;
-        if (empty($checkDuplicated)) :
+        try {
+            if (empty($checkDuplicated)) :
+                $url = "https://receitaws.com.br/v1/cnpj/" . $newCnpj;
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                $result = curl_exec($ch);
 
-            $url = "https://receitaws.com.br/v1/cnpj/" . $newCnpj;
+                $r = json_decode($result, true);
 
-            $result = file_get_contents($url);
-            // Will dump a beauty json :3
-            $r = json_decode($result, true);
+                if (isset($r["status"]) && $r["status"] === "ERROR") {
+                    $info = "Não possivel consultar os dados deste CNPJ";
+                } else {
+                    $info = "Situação do CNPJ: " . $r["situacao"];
+                    $data = $r;
+                }
+            else :
+                $info = "CNPJ já cadastrado no sistema.";
+            endif;
+        } catch (Exception $exception) {
+            $info = "Não possivel consultar os dados deste CNPJ";
+        }
 
-            if (isset($r["status"]) && $r["status"] === "ERROR") {
-                $info = $r["message"] ;
-            } else {
-                $info = "Situação do CNPJ: " . $r["situacao"];
-                $data = $r;
-            }
-
-
-        else :
-            $info = "CNPJ já cadastrado no sistema.";
-
-        endif;
-
+        header('Content-Type: application/json; charset=utf-8');
         echo json_encode([
-                'info' => $info,
-                'data' => $data
+            'info' => $info,
+            'data' => $data
         ]);
     }
 

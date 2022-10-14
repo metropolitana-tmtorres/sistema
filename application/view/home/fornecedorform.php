@@ -20,6 +20,7 @@
       <?php elseif (isset($_GET['erro']) && $_GET['erro'] == 'true') : ?>
         <div class="alert alert-danger">Houve um erro ao salvar os dados</div>
       <?php endif; ?>
+        <div class='alert hidden' id="msg"></div>
 
 
       <div class="box">
@@ -729,7 +730,7 @@
       $(".money").mask("#.##0,00", {
         reverse: true
       });
-      $('#cep').mask('99.999-999');
+      $('#cep').mask('99999-999');
       $('#cpf').mask('999.999.999-99');
       $('#rg').mask('99.999.999-9');
       $('#celular').mask('(99) 99999-9999');
