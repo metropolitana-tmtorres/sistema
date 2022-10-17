@@ -90,7 +90,8 @@ class fornecedorModel
         $fileFornecedorComprovanteEndereço,
         $fileFornecedorContratoSocial,
         $fileFornecedorCartãoCNPJ,
-        $fileFornecedorContratoPrestação
+        $fileFornecedorContratoPrestação,
+        $valorTotal
     ) {
 
 
@@ -128,7 +129,9 @@ class fornecedorModel
             fileFornecedorComprovanteEndereço,
             fileFornecedorContratoSocial,
             fileFornecedorCartãoCNPJ,
-            fileFornecedorContratoPrestação)
+            fileFornecedorContratoPrestação,
+            decimalValorTotal
+            )
         VALUES (
             :nome,
             :email,
@@ -164,7 +167,8 @@ class fornecedorModel
             '$fileFornecedorComprovanteEndereço',
             '$fileFornecedorContratoSocial',
             '$fileFornecedorCartãoCNPJ',
-            '$fileFornecedorContratoPrestação')";
+            '$fileFornecedorContratoPrestação',
+            :valor_toral)";
         $query = $this->db->prepare($sql);
         $parameters = [
             ':nome' => $nome,
@@ -195,7 +199,8 @@ class fornecedorModel
             ':descontoVT' => $descontoVT,
             ':cargo' => $cargoId,
             ':obs' => $obs,
-            ':po' => $po
+            ':po' => $po,
+            'valor_toral' => $valorTotal
         ];
 
         // echo "<pre>";

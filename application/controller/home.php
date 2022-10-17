@@ -4086,6 +4086,8 @@ class Home extends Controller
         $po = $this->currencyToDecimal($this->formatMoney($_POST['po']));
         $planoMedico = $this->currencyToDecimal($this->formatMoney($_POST['planoMedico']));
         $extra = $this->currencyToDecimal($this->formatMoney($_POST['Extra']));
+        $valor_total =  $this->currencyToDecimal($money + $vt + $vr + $po + $planoMedico + $extra);
+
 
         $fileFornecedorCPF = $this->uploadModel->uploadFile('fileFornecedorCPF');
         $fileFornecedorRG = $this->uploadModel->uploadFile('fileFornecedorRG');
@@ -4135,7 +4137,8 @@ class Home extends Controller
             $fileFornecedorComprovanteEndereço,
             $fileFornecedorContratoSocial,
             $fileFornecedorCartãoCNPJ,
-            $fileFornecedorContratoPrestação
+            $fileFornecedorContratoPrestação,
+            $valor_total
         );
 
         if ($obj) {
@@ -4154,7 +4157,6 @@ class Home extends Controller
         $po = $this->currencyToDecimal($this->formatMoney($_POST['po']));
         $planoMedico = $this->currencyToDecimal($this->formatMoney($_POST['planoMedico']));
         $extra = $this->currencyToDecimal($this->formatMoney($_POST['Extra']));
-
         $fileFornecedorCPF = $this->uploadModel->uploadFile('fileFornecedorCPF');
         $fileFornecedorRG = $this->uploadModel->uploadFile('fileFornecedorRG');
         $fileFornecedorComprovanteEndereço = $this->uploadModel->uploadFile('fileFornecedorComprovanteEndereço');
@@ -4164,13 +4166,6 @@ class Home extends Controller
 
 
 
-
-
-        if (isset($_POST['descontar'])) {
-            $descontoVT = 0;
-        } else {
-            $descontoVT = 1;
-        }
         $obj = $this->fornecedorModel->editFornecedor(
             $_POST['nome'],
             $_POST['email'],
@@ -4198,7 +4193,7 @@ class Home extends Controller
             $vr,
             $planoMedico,
             $extra,
-            $descontoVT,
+            0,
             $_POST['cargo'],
             $_POST['obs'],
             $po,

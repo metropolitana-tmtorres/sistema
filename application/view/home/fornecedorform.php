@@ -299,8 +299,6 @@
                       <input type='currency' value="<?php if (isset($obj->strFornecedorVT)) {
                                                       echo $obj->strFornecedorVT;
                                                     } ?>" name="VT" class="form-control money" placeholder="" />
-                      <label for="descontar">Não descontar VT?</label>
-                      <input type=checkbox name="descontar" id=descontar value=1 <?php if (isset($obj->intFornecedorDescontoVT)) if ($obj->intFornecedorDescontoVT == 0) echo 'checked' ?>>
                     </div>
                   </div>
                   <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
@@ -311,6 +309,17 @@
                                                     } ?>" name="VR" class="form-control money" placeholder="" />
                     </div>
                   </div>
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="total_calculado">Total</label>
+                            <input type='currency' id="total_calculado" class="form-control" style="resize: none"
+                                   readonly disabled
+                                   value="<?php if (isset($obj->decimalValorTotal) && $obj->decimalValorTotal) {
+                                       echo $obj->decimalValorTotal;
+                                   } ?>"
+                            />
+                        </div>
+                    </div>
                   <div class="col-xs-12">
                     <div class="form-group">
                       <label for="obs">Observações</label>
@@ -725,6 +734,7 @@
 
   <script>
     $(document).ready(function() {
+
       $(".money").mask("#.##0,00", {
         reverse: true
       });
@@ -739,7 +749,17 @@
       <?php if (isset($obj)) : ?>
         $('#cargo').val(<?= $obj->intCargoID ?>).trigger('change');
       <?php endif; ?>
+        $("form input[type=currency]").change(function () {
+            var valor_total = 0;
+            $("form input[type=currency][id!=total_calculado]").each(function (index, element) {
+                var value = $(element).val();
+                if(value){
+                    valor_total = valor_total + parseFloat(value.replace(".","").replace(",","."));
+                }
+            })
+            $("#total_calculado").val((valor_total.toFixed(2)+"").replace(".",","))
 
+        })
     });
 
     const INPUT_ENDERECO = document.querySelector('#endereco');
