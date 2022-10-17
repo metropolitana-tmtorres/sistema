@@ -12,21 +12,17 @@
     <section class="content container-fluid">
       <br>
       <?php if (isset($_GET['salvo']) && $_GET['salvo'] == 'true') : ?>
-            <?php echo "<script>$(function () {toastr['success']('Dados salvos com sucesso!')}); </script>";?>
-        <?php elseif (isset($_GET['reapprove']) && $_GET['reapprove'] == 'true') : ?>
-            <?php echo "<script>$(function () {toastr['success']('Reenviado para aprovação!')}); </script>";?>
-        <?php elseif (isset($_GET['reapprove']) && $_GET['reapprove'] == 'error') : ?>
-            <?php echo "<script> $(function () {toastr['warning']('Houve um erro ao reenviar para aprovação!') }); </script>"; ?>
-        <?php elseif (isset($_GET['erro']) && $_GET['erro'] == 'true') : ?>
-            <?php echo "<script> $(function () {toastr['warning']('Houve um erro ao salvar os dados!') }); </script>"; ?>
-        <?php endif; ?>
-
-
-        <div class='alert hidden' id="msg"></div>
-
+        <div class="alert alert-success">Dados salvos com sucesso</div>
+      <?php elseif (isset($_GET['reapprove']) && $_GET['reapprove'] == 'true') : ?>
+        <div class="alert alert-success">Reenviado para aprovação com sucesso!</div>
+      <?php elseif (isset($_GET['reapprove']) && $_GET['reapprove'] == 'error') : ?>
+        <div class="alert alert-danger">Houve um erro ao reenviar para aprovação!</div>
+      <?php elseif (isset($_GET['erro']) && $_GET['erro'] == 'true') : ?>
+        <div class="alert alert-danger">Houve um erro ao salvar os dados</div>
+      <?php endif; ?>
 
       <div class="box">
-        <?php if (isset($obj)) {
+      <?php if (isset($obj)) {
           if (isset($_GET['aprovar']))  $url = 'editfornecedor?aprovar=true';
           else $url = 'editfornecedor';
         } else {
