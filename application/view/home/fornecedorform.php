@@ -22,7 +22,7 @@
       <?php endif; ?>
 
       <div class="box">
-        <?php if (isset($obj)) {
+      <?php if (isset($obj)) {
           if (isset($_GET['aprovar']))  $url = 'editfornecedor?aprovar=true';
           else $url = 'editfornecedor';
         } else {
@@ -691,9 +691,6 @@
   <!-- /.box -->
 
 
-  </section>
-  <!-- /.content -->
-  </div>
   <!-- /.content-wrapper -->
   <?php if (isset($_GET['aprovar'])) : ?>
     <div class="modal modal-info fade" id="modal-<?= $obj->intFornecedorID; ?>">
