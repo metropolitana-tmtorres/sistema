@@ -682,9 +682,6 @@
   <!-- /.box -->
 
 
-  </section>
-  <!-- /.content -->
-  </div>
   <!-- /.content-wrapper -->
   <?php if (isset($_GET['aprovar'])) : ?>
     <div class="modal modal-info fade" id="modal-<?= $obj->intFornecedorID; ?>">
