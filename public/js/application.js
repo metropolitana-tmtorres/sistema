@@ -70,7 +70,9 @@ $(function () {
                 $.ajax(url + "/home/checkCnpj/" + cnpj)
                     .done(function (result) {
                         $('#msg').html(result.info);
+                        var type = "";
                         if(!result.data){
+                            type="warning";
                             $('#msg').addClass('alert-danger').removeClass('alert-success')
                             $('#razao').val("").removeAttr('readonly')
                             $('#fantasia').val("").removeAttr('readonly')
@@ -80,6 +82,7 @@ $(function () {
                             $('#cidade').val("")
                             $('#estado').val("")
                         }else{
+                            type="success";
                             $('#msg').addClass('alert-success').removeClass('alert-danger')
                             $('#razao').val(result.data.nome).attr('readonly',true)
                             $('#fantasia').val(result.data.fantasia).attr('readonly',true)
@@ -89,7 +92,8 @@ $(function () {
                             $('#cidade').val(result.data.municipio)
                             $('#estado').val(result.data.uf)
                         }
-                        $('#msg').removeClass('hidden')
+
+                        toastr[type](result.info)
                     })
                     .fail(function () {
 

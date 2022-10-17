@@ -20,8 +20,6 @@
       <?php elseif (isset($_GET['erro']) && $_GET['erro'] == 'true') : ?>
         <div class="alert alert-danger">Houve um erro ao salvar os dados</div>
       <?php endif; ?>
-        <div class='alert hidden' id="msg"></div>
-
 
       <div class="box">
         <?php if (isset($obj)) {
