@@ -43,7 +43,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($funcionarios as $f) : ?>
+                            <?php foreach ($funcionarios as $f) :
+                                
+                                $nome = $this->funcionariosModel->getFuncionarioByID($f->intFuncionarioID); 
+                                echo '<pre>', var_dump($nome); echo '</pre>';
+
+                                ?>
                                 <tr>
                                     <td><a href="<?= URL; ?>home/editarfuncionario/<?= $f->intFuncionarioID; ?>?aprovar=true"><?= $f->strFuncionarioNome; ?></a></td>
                                     <td><?= $f->strCargoNome; ?></td>

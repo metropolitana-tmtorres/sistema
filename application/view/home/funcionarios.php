@@ -55,8 +55,8 @@
                 </thead>
                 <tbody>
                 <?php foreach($funcionarios as $f) :
-                         //   $nome = $this->funcionariosModel->getSalario($f->intFuncionarioID); 
-                           //    echo '<pre>', var_dump($nome); echo '</pre>';
+                                        $nome = $this->funcionariosModel->getFuncionarioByID($f->intFuncionarioID); 
+                                        echo '<pre>', var_dump($nome); echo '</pre>';
                     ?>
                     <tr>
                         <td><a href="<?=URL; ?>home/editarfuncionario/<?=$f->intFuncionarioID; ?>"><?=$f->strFuncionarioNome; ?></a></td>
