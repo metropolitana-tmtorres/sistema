@@ -8,7 +8,7 @@
       </h1>
       <ol class="breadcrumb">
         <li>
-            <button type="button" class="btn btn-info" onclick="window.history.go(-1); return false;">
+            <button type="button" class="btn-sm btn-goBack btn-flat" onclick="window.history.go(-1); return false;">
                 <i class="fa fa-arrow-left"></i> Voltar
             </button>
         </li>

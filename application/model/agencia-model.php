@@ -80,5 +80,14 @@ class agenciaModel
 
         return $query->fetch()->strAgenciaNome;
     }
+
+    public function excAgencia($id) {
+        $sql = "DELETE FROM tb_agencias WHERE intAgenciaID = :id";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':id' => $id);
+        $query->execute($parameters);
+
+        return true; 
+    }
     
 }

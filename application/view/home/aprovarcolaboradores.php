@@ -43,12 +43,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($funcionarios as $f) :
+                        <?php foreach ($funcionarios as $f) :
                                 
-                                $nome = $this->funcionariosModel->getFuncionarioByID($f->intFuncionarioID); 
-                                echo '<pre>', var_dump($nome); echo '</pre>';
+                                $nome = $this->fornecedorModel->getFuncionariosByID($f->intFornecedorID); 
+                                echo "<pre>", var_dump ($nome), "</pre>";
 
                                 ?>
+                                  <?php endforeach; ?>
+
+
+                            <!--?php foreach ($funcionarios as $f) : ?>
                                 <tr>
                                     <td><a href="<?= URL; ?>home/editarfuncionario/<?= $f->intFuncionarioID; ?>?aprovar=true"><?= $f->strFuncionarioNome; ?></a></td>
                                     <td><?= $f->strCargoNome; ?></td>
@@ -59,8 +63,8 @@
                                         <a class="btn-sm btn-success btn-flat" href="<?= URL; ?>home/approveFuncionario/<?= $f->intFuncionarioID; ?>" title="Aprovar Fornecedor"><i class="fa fa-check"></i> Aprovar</a>
                                         <a class="btn-sm btn-danger btn-flat" href="#" data-toggle="modal" data-target="#modalFuncionario-<?= $f->intFuncionarioID; ?>" title="Reprovar Funcionario"><i class="fa fa-close"></i> Reprovar</a>
                                     </td>
-                                </tr>
-                            <?php endforeach; ?>
+                                </tr-->
+                            <!--?php endforeach; ?-->
                         </tbody>
 
                     </table>

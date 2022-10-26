@@ -71,8 +71,8 @@ $(function () {
                     .done(function (result) {
                         $('#msg').html(result.info);
                         var type = "";
-                        if(!result.data){
-                            type="warning";
+                        if (!result.data) {
+                            type = "warning";
                             $('#msg').addClass('alert-danger').removeClass('alert-success')
                             $('#razao').val("").removeAttr('readonly')
                             $('#fantasia').val("").removeAttr('readonly')
@@ -81,12 +81,12 @@ $(function () {
                             $('#complemento').val("")
                             $('#cidade').val("")
                             $('#estado').val("")
-                        }else{
-                            type="success";
+                        } else {
+                            type = "success";
                             $('#msg').addClass('alert-success').removeClass('alert-danger')
-                            $('#razao').val(result.data.nome).attr('readonly',true)
-                            $('#fantasia').val(result.data.fantasia).attr('readonly',true)
-                            $('#cep').val(result.data.cep.replace('.',''))
+                            $('#razao').val(result.data.nome).attr('readonly', true)
+                            $('#fantasia').val(result.data.fantasia).attr('readonly', true)
+                            $('#cep').val(result.data.cep.replace('.', ''))
                             $('#endereco').val(result.data.logradouro + ", " + result.data.numero)
                             $('#complemento').val(result.data.complemento)
                             $('#cidade').val(result.data.municipio)
@@ -106,7 +106,7 @@ $(function () {
     }
 
     // BUSCA CNPJ
-    if ($('#VerificarCNPJFornecedor').length !== 0) {
+   /* if ($('#VerificarCNPJFornecedor').length !== 0) {
 
         $('#VerificarCNPJFornecedor').on('click', function () {
 
@@ -126,7 +126,7 @@ $(function () {
                     });
             }
         });
-    }
+    }*/
 
     if ($('#cargo').length !== 0) {
 
@@ -280,52 +280,29 @@ function getCargoList(id) {
     }
 }
 
-$(function() {
+$(function () {
     $('.currency').maskMoney();
-  })
+})
 
-
-
-/*function calcularSalario(){
-    var num1 = parseInt(document.getElementById('salarioBruto').value);
-    var num2 = parseInt(document.getElementById('valorDesconto1').value);
-    var num3 = parseInt(document.getElementById('valorDesconto2').value);
-    var num4 = parseInt(document.getElementById('valorDesconto3').value);
-
-    var result = num1 + num2 + num3 + num4;
-
-    document.getElementById('salarioLiquido').value = result;
-}*/
-
- // $(document).ready(function () {
-   // $('#myTable').DataTable({
-        //responsive: true
-   // });
-//});
-
-/*function calcular() {
-    contador = 1;
-    elementos = [];
-    // Procuro todos elementos que possuem o pseudo-metodo "fazparte" e que estao visiveis no formulario
-    jQuery('input[fazparte]:visible').each(function() {
-      // Teoricamente os campos adicionados dinamicamente devem possuir id 
-      // diferenciado, por um contador talvez? enfim, uso esse contador para
-      // adicionar em um array que irei usar futuramente para fazer o calculo
-      if (jQuery(this)[0].value != "") {
-        elementos.push(contador);
-      }
-      contador++;
+$(function () {
+    $(".money").mask("#.##0,00", {
+        reverse: true
     });
-    var valorFinal = 0;
-    for (var i in elementos) {
-      // Para cada input que possui valor, faco uma somatória das porcentagens 
-      //dos elementos que possuem um valor setado, e jogo no valor final da comissão
-      valorFinal += ((document.getElementById("porcentagem"+elementos[i]).value))*(document.getElementById("valor"+elementos[i]).value)
-    }
-    document.getElementById("vt").value = valorFinal;
-  }*/
+    $('#cep').mask('99999-999');
+    $('#cpf').mask('999.999.999-99');
+    $('#rg').mask('99.999.999-9');
+    //$('#celular').mask('(99) 99999-9999');
+    //$('#telefone').mask('(99) 9999-9999');
+    $('#cnpj').mask('99.999.999/9999-99');
+    $('#data').mask('99/99/9999');
+})
 
-  //$(function() {
-    //$('.realbrasileiro').maskMoney();
-   // $(".realbrasileiro").maskMoney();
-  //})
+var behavior = function (val) {
+    return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+},
+options = {
+    onKeyPress: function (val, e, field, options) {
+        field.mask(behavior.apply({}, arguments), options);
+    }
+};
+$('.telefone').mask(behavior, options);

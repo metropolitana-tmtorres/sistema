@@ -11,11 +11,11 @@
       <ol class="breadcrumb">
         <li>
             <?php if(isset($_GET['salvo'])) : ?>
-                <button type="button" class="btn btn-info" onclick="window.location.href = '<?php echo URL; ?>/home/crm';">
+                <button type="button" class="btn-sm btn-goBack btn-flat" onclick="window.location.href = '<?php echo URL; ?>/home/crm';">
                     <i class="fa fa-arrow-left"></i> Voltar
                 </button>
             <?php else: ?>
-                <button type="button" class="btn btn-info" onclick="window.history.go(-1); return false;">
+                <button type="button" class="btn-sm btn-goBack btn-flat" onclick="window.history.go(-1); return false;">
                     <i class="fa fa-arrow-left"></i> Voltar
                 </button>
             <?php endif; ?>

@@ -1039,6 +1039,8 @@ class Home extends Controller
         }
     }
 
+
+
     public function excluirAdm($id)
     {
         header("Location: " . URL . "home/deladm/" . $id);
@@ -2651,6 +2653,34 @@ class Home extends Controller
         }
     }
 
+    public function excluirAgencia($id){
+        header("Location: " . URL . "home/delagencia/" . $id);
+    }
+
+    public function excAgencia($id)
+    {
+        $obj = $this->agenciaModel->excAgencia($id);
+
+        if ($obj) {
+            header("Location: " . URL . "home/agencias?salvo=true");
+        }
+    }
+
+    public function delAgencia($id){
+        if ($this->isLogged()) {
+            $adm = $this->admModel->getAdmByID($_SESSION['admID']);
+            $a = $this->agenciaModel->getAgenciaByID($id);
+            $usrID = $id;
+
+            // load views
+            require APP . 'view/_templates/header.php';
+            require APP . 'view/home/del-agencia.php';
+            require APP . 'view/_templates/footer.php';
+        } else {
+            header("Location: " . URL . "home?error=log");
+        }
+    }
+
 
 
     public function estoqueForm($id = NULL)
@@ -3102,151 +3132,36 @@ class Home extends Controller
         $newCnpj = str_replace(['.', '/', '-'], [''], $correctCnpj);
 
         $checkDuplicated = $this->clientesModel->checkDuplicated($correctCnpj);
+        $info = null;
+        $data = null;
+        try {
+            if (empty($checkDuplicated)) :
+                $url = "https://receitaws.com.br/v1/cnpj/" . $newCnpj;
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                $result = curl_exec($ch);
 
-        if (empty($checkDuplicated)) :
-            $url = "https://receitaws.com.br/v1/cnpj/" . $newCnpj;
+                $r = json_decode($result, true);
 
-            $result = file_get_contents($url);
-            // Will dump a beauty json :3
-            $r = json_decode($result, true);
+                if (isset($r["status"]) && $r["status"] === "ERROR") {
+                    $info = "Não possivel consultar os dados deste CNPJ";
+                } else {
+                    $info = "Situação do CNPJ: " . $r["situacao"];
+                    $data = $r;
+                }
+            else :
+                $info = "CNPJ já cadastrado no sistema.";
+            endif;
+        } catch (Exception $exception) {
+            $info = "Não possivel consultar os dados deste CNPJ";
+        }
 
-            if ($r["situacao"] == "ATIVA") {
-                $alert = "<div class='alert alert-success'>Situação do CNPJ: " . $r["situacao"] . "</div>";
-                $disabled = "";
-            } else {
-                $alert = "<div class='alert alert-danger'>Situação do CNPJ: " . $r["situacao"] . "</div>";
-                $disabled = " disabled='true' ";
-            }
-
-            if (isset($r["status"]) && $r["status"] === "ERROR") {
-                $return = "<div class='alert alert-danger'>" . $r["message"] . "</div>";
-            } else {
-                $return = $alert . "
-                <div class='form-group'>
-                    <label for=''>Razão Social</label>
-                    <input id='razao' type='text' value='" . $r['nome'] . "' " . $disabled . " name='razao' class='form-control'>
-                </div>
-                <div class='form-group'>
-                    <label for=''>Nome Fantasia</label>
-                    <input id='fantasia' type='text' required value='" . $r['fantasia'] . "' " . $disabled . " name='fantasia' class='form-control'>
-                </div>
-                <div class='form-group'>
-                    <label for='cep'>CEP</label>
-                    <input id='cep' type='text' value='" . $r['cep'] . "' " . $disabled . " name='cep' id='cep' class='form-control' placeholder='Informe um CEP' />
-                    <input type='button' id='VerificarCEP' class='btn btn-primary' value='Verificar' />
-                </div>
-                <div class='form-group'>
-                    <label for=''>Endereço</label>
-                    <input id='endereco' type='text' value='" . $r['logradouro'] . ", " . $r['numero'] . "' " . $disabled . " name='endereco' id='endereco' class='form-control'>
-                </div>
-                <div class='form-group'>
-                    <label for='cidade'>Cidade</label>
-                    <input id='cidade' type='text' value='" . $r['municipio'] . "' " . $disabled . " class='form-control' name='cidade' id='cidade' readonly />
-                </div>
-                <div class='form-group'>
-                    <label for='cidade'>Estado</label>
-                    <input type='text' value='' " . $disabled . " class='form-control' name='estado' id='estado' />
-                </div>
-                <div class='form-group'>
-                    <label for=''>Responsável</label>
-                    <input type='text' value='' " . $disabled . "  name='responsavel' class='form-control'>
-                </div>
-                <div class='form-group'>
-                    <label for=''>RG do Responsável</label>
-                    <input type='text' value='' " . $disabled . "  name='rg' id='rg' class='form-control'>
-                </div>
-                <div class='form-group'>
-                    <label for=''>CPF do Responsável</label>
-                    <input type='text' value='' " . $disabled . "  id='cpf' name='cpf' class='form-control'>
-                </div>
-                <div class='form-group'>
-                    <label for=''>Contato</label>
-                    <input type='text' value='' " . $disabled . "  name='contato' class='form-control'>
-                </div>
-                <div class='form-group'>
-                    <label for=''>Cargo do Contato</label>
-                    <input type='text' value='' " . $disabled . "  name='cargo' class='form-control'>
-                </div>
-                <div class='form-group'>
-                    <label for=''>E-Mail</label>
-                    <input type='mail' value='' " . $disabled . " name='email' class='form-control'>
-                </div>
-                <div class='form-group'>
-                    <label for=''>Telefone</label>
-                    <input type='text' value='' " . $disabled . " name='telefone' id='telefone' class='form-control'>
-                </div>
-                <div class='form-group'>
-                    <label for=''>Celular</label>
-                    <input type='text' value='' " . $disabled . " name='celular' id='celular' class='form-control'>
-                </div>
-            ";
-            }
-
-        else :
-            $alert = "<div class='alert alert-danger'>CNPJ já cadastrado no sistema.</div>";
-            $disabled = " disabled='true' ";
-            $return = $alert . "
-                <div class='form-group'>
-                    <label for=''>Razão Social</label>
-                    <input id='razao' type='text' value='' " . $disabled . " name='razao' class='form-control'>
-                </div>
-                <div class='form-group'>
-                    <label for=''>Nome Fantasia</label>
-                    <input id='fantasia' type='text' required value='' " . $disabled . " name='fantasia' class='form-control'>
-                </div>
-                <div class='form-group'>
-                    <label for='cep'>CEP</label>
-                    <input id='cep' type='text' value='' " . $disabled . " name='cep' id='cep' class='form-control' placeholder='Informe um CEP' />
-                    <input type='button' id='VerificarCEP' class='btn btn-primary' value='Verificar' />
-                </div>
-                <div class='form-group'>
-                    <label for=''>Endereço</label>
-                    <input id='endereco' type='text' value='' " . $disabled . " name='endereco' id='endereco' class='form-control'>
-                </div>
-                <div class='form-group'>
-                    <label for='cidade'>Cidade</label>
-                    <input id='cidade' type='text' value='' " . $disabled . " class='form-control' name='cidade' id='cidade' readonly />
-                </div>
-                <div class='form-group'>
-                    <label for='cidade'>Estado</label>
-                    <input type='text' value='' " . $disabled . " class='form-control' name='estado' id='estado' />
-                </div>
-                <div class='form-group'>
-                    <label for=''>Responsável</label>
-                    <input type='text' value='' " . $disabled . "  name='responsavel' class='form-control'>
-                </div>
-                <div class='form-group'>
-                    <label for=''>RG do Responsável</label>
-                    <input type='text' value='' " . $disabled . "  name='rg' id='rg' class='form-control'>
-                </div>
-                <div class='form-group'>
-                    <label for=''>CPF do Responsável</label>
-                    <input type='text' value='' " . $disabled . "  id='cpf' name='cpf' class='form-control'>
-                </div>
-                <div class='form-group'>
-                    <label for=''>Contato</label>
-                    <input type='text' value='' " . $disabled . "  name='contato' class='form-control'>
-                </div>
-                <div class='form-group'>
-                    <label for=''>Cargo do Contato</label>
-                    <input type='text' value='' " . $disabled . "  name='cargo' class='form-control'>
-                </div>
-                <div class='form-group'>
-                    <label for=''>E-Mail</label>
-                    <input type='mail' value='' " . $disabled . " name='email' class='form-control'>
-                </div>
-                <div class='form-group'>
-                    <label for=''>Telefone</label>
-                    <input type='text' value='' " . $disabled . " name='telefone' id='telefone' class='form-control'>
-                </div>
-                <div class='form-group'>
-                    <label for=''>Celular</label>
-                    <input type='text' value='' " . $disabled . " name='celular' id='celular' class='form-control'>
-                </div>
-            ";
-        endif;
-
-        echo $return;
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode([
+            'info' => $info,
+            'data' => $data
+        ]);
     }
 
 
@@ -3397,7 +3312,7 @@ class Home extends Controller
 
         $dates = $this->briefingModel->getAllBriefingDetalhesByProdID($prod, $brief);
         $return = '
-        <table id="data" class="table table-bordered table-striped">
+         <table class="table table-bordered table-striped smarttable2">
         <thead>
             <tr>
                 <th>Data</th>

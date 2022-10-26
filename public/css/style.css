@@ -203,3 +203,14 @@ legend {
     color: #fff;
     font-weight: 200;
 }
+
+.select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border: 1px solid #d2d6de!important;
+    border-radius: 0px!important;
+    height: 34px!important;
+}
+
+.mt-5{
+    padding-top: 5rem;
+}

@@ -10,7 +10,7 @@
       </h1>
       <ol class="breadcrumb">
         <li>
-            <button type="button" class="btn btn-info" onclick="window.history.go(-1); return false;">
+            <button type="button" class="btn-sm btn-goBack btn-flat" onclick="window.history.go(-1); return false;">
                 <i class="fa fa-arrow-left"></i> Voltar
             </button>
         </li>
@@ -21,9 +21,9 @@
     <section class="content container-fluid">
     <BR>
     <?php if(isset($_GET['salvo']) && $_GET['salvo'] == 'true') : ?>
-        <div class="alert alert-success">Dados salvos com sucesso</div>
+          <?php echo "<script>$(function () {toastr['success']('Dados salvos com sucesso!')}); </script>"; ?>
     <?php elseif(isset($_GET['erro']) && $_GET['erro'] == 'true') : ?>
-        <div class="alert alert-danger">Houve um erro ao salvar os dados</div>
+            <?php echo "<script> $(function () {toastr['warning']('Houve um erro ao salvar os dados. Caso persista contato o administrador do sistema.') }); </script>"; ?>
     <?php endif; ?>
     <div class="row">
         <div class="col-md-8 col-sm-12">
@@ -33,7 +33,7 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <table id="data" class="table table-bordered table-striped">
+                     <table class="table table-bordered table-striped smarttable2">
                         <thead>
                             <tr>
                                 <th>Contrato</th>

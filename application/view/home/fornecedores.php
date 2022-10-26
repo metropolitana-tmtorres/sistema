@@ -19,9 +19,9 @@
     <section class="content container-fluid">
         <BR>
         <?php if (isset($_GET['salvo']) && $_GET['salvo'] == 'true') : ?>
-            <div class="alert alert-success">Dados salvos com sucesso</div>
+              <?php echo "<script>$(function () {toastr['success']('Dados salvos com sucesso!')}); </script>"; ?>
         <?php elseif (isset($_GET['erro']) && $_GET['erro'] == 'true') : ?>
-            <div class="alert alert-danger">Houve um erro ao salvar os dados. Caso persista contato o administrador do sistema.</div>
+               <?php echo "<script> $(function () {toastr['warning']('Houve um erro ao salvar os dados. Caso persista contato o administrador do sistema.') }); </script>"; ?>
         <?php endif; ?>
         <div class="box box-primary">
             <!-- /.box-header -->

@@ -11,17 +11,17 @@
       <ol class="breadcrumb">
         <li>
             <?php if(isset($_GET['salvo'])) : ?>
-                <button type="button" class="btn btn-info" onclick="window.location.href = '<?php echo URL; ?>/home/crm';">
+                <button type="button" class="btn-sm btn-goBack btn-flat" onclick="window.location.href = '<?php echo URL; ?>/home/crm';">
                     <i class="fa fa-arrow-left"></i> Voltar
                 </button>
             <?php else: ?>
-                <button type="button" class="btn btn-info" onclick="window.history.go(-1); return false;">
+                <button type="button" class="btn-sm btn-goBack btn-flat" onclick="window.history.go(-1); return false;">
                     <i class="fa fa-arrow-left"></i> Voltar
                 </button>
             <?php endif; ?>
 
-            <button type="button" class="btn btn-info" onclick="window.location.href='<?php echo URL; ?>home/adicionarconta'">
-                <i class="fa fa-plus"></i> Cadastrar
+            <button type="button" class="btn-sm btn-register btn-flat" onclick="window.location.href='<?php echo URL; ?>home/adicionarconta'">
+                <i class="fa fa-edit"></i> Cadastrar
             </button>
         </li>
       </ol>
@@ -31,9 +31,9 @@
     <section class="content container-fluid">
     <BR>
     <?php if(isset($_GET['salvo']) && $_GET['salvo'] == 'true') : ?>
-        <div class="alert alert-success">Dados salvos com sucesso</div>
+          <?php echo "<script>$(function () {toastr['success']('Dados salvos com sucesso!')}); </script>"; ?>
     <?php elseif(isset($_GET['erro']) && $_GET['erro'] == 'true') : ?>
-        <div class="alert alert-danger">Houve um erro ao salvar os dados. Caso persista contato o administrador do sistema.</div>
+           <?php echo "<script> $(function () {toastr['warning']('Houve um erro ao salvar os dados. Caso persista contato o administrador do sistema.') }); </script>"; ?>
     <?php elseif(isset($_GET['add']) && $_GET['add'] == 'true') : ?>
         <div class="alert alert-danger">Por favor, cadastre a conta <?php echo $_GET['client']; ?> utilizando o botão "Cadastrar" ao lado.</div>
     <?php endif; ?>
@@ -43,7 +43,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-            <table class="table table-bordered table-striped smarttable">
+            <table class="table table-bordered table-striped smarttable2">
                 <thead>
                     <tr>
                         <th>Conta</th>
@@ -66,16 +66,6 @@
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Conta</th>
-                        <th>Cliente</th>
-                        <th>Agência</th>
-                        <th>Segmento</th>
-                        <th>Editar</th>
-                        <th>Visualizar</th>
-                    </tr>
-                </tfoot>
             </table>
         </div>
         <!-- /.box-body -->

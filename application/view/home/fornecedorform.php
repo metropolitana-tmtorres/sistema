@@ -12,13 +12,13 @@
     <section class="content container-fluid">
       <br>
       <?php if (isset($_GET['salvo']) && $_GET['salvo'] == 'true') : ?>
-        <div class="alert alert-success">Dados salvos com sucesso</div>
+          <?php echo "<script>$(function () {toastr['success']('Dados salvos com sucesso!')}); </script>"; ?>
       <?php elseif (isset($_GET['reapprove']) && $_GET['reapprove'] == 'true') : ?>
         <div class="alert alert-success">Reenviado para aprovação com sucesso!</div>
       <?php elseif (isset($_GET['reapprove']) && $_GET['reapprove'] == 'error') : ?>
         <div class="alert alert-danger">Houve um erro ao reenviar para aprovação!</div>
       <?php elseif (isset($_GET['erro']) && $_GET['erro'] == 'true') : ?>
-        <div class="alert alert-danger">Houve um erro ao salvar os dados</div>
+            <?php echo "<script> $(function () {toastr['warning']('Houve um erro ao salvar os dados. Caso persista contato o administrador do sistema.') }); </script>"; ?>
       <?php endif; ?>
 
       <div class="box">
@@ -250,7 +250,7 @@
                 <fieldset>
                   <legend>Prestação de Serviço</legend>
 
-                  <div class="col-xs-12">
+                  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="form-group">
                       <label for="cargo">Selecione o Cargo</label>
                       <select name="cargo" id="cargo" class="form-control">
@@ -260,7 +260,7 @@
                       </select>
                     </div>
                   </div>
-                  <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="form-group">
                       <label for="">Valor da Prestação de Serviço</label>
                       <input type='currency' value="<?php if (isset($obj->strFornecedorValor)) {
@@ -658,14 +658,14 @@
             </div-->
 
             <div class="row">
-              <div class="col-xs-12">
+              <div class="col-md-12 col-xs-12 text-center">
                 <?php if (isset($obj)) : ?>
                   <input type="hidden" name="adm" value="<?php echo $adm->intAdmID; ?>">
                   <input name="fornecedorId" type="hidden" value="<?php echo $obj->intFornecedorID; ?>">
-                  <button type="submit" class="btn btn-primary">Salvar Fornecedor</button>
+                  <button type="submit" class="btn btn-register btn-flat"><i class="fa fa-check"></i> Salvar Fornecedor</button>
                 <?php else : ?>
                   <input type="hidden" name="adm" value="<?php echo $adm->intAdmID; ?>">
-                  <button type="submit" class="btn btn-primary">Salvar Fornecedor</button>
+                  <button type="submit" class="btn btn-register btn-flat"><i class="fa fa-check"></i> Salvar Fornecedor</button>
                 <?php endif; ?>
 
                 <?php if (isset($_GET['aprovar'])) : ?>

@@ -5,7 +5,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Cargos
+        Deletar agência
         <!-- <small>Optional description</small> -->
       </h1>
       <ol class="breadcrumb">
@@ -29,9 +29,9 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-            <p>Tem certeza de que deseja excluir <strong><?php echo $u->strAdmNome; ?></strong>?</p>
-            <a href="<?php echo URL; ?>home/excadm/<?php echo $usrID; ?>" class="btn btn-danger btn-lg pull-right">Sim, excluir</a> 
-            <a href="<?php echo URL; ?>home/adm" class="btn btn-primary btn-lg pull-right">Não, voltar</a>
+            <p>Tem certeza de que deseja excluir <strong><?php echo  $a->strAgenciaNome;?></strong>, todos os dados e informações serão excluidos do banco de dados?</p>
+            <a href="<?php echo URL; ?>home/excagencia/<?php echo $usrID; ?>" class="btn btn-danger btn-lg pull-right">Sim, excluir</a> 
+            <a href="<?php echo URL; ?>home/agencias" class="btn btn-primary btn-lg pull-right">Não, voltar</a>
         </div>
         <!-- /.box-body -->
     </div>

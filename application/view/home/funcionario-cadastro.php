@@ -37,9 +37,9 @@ if (isset($funcionario)) {
 
         <BR>
         <?php if (isset($_GET['salvo']) && $_GET['salvo'] == 'true') : ?>
-            <?php echo "<script>$(function () {toastr['success']('Dados salvos com sucesso!')}); </script>";?>
+            <?php echo "<script>$(function () {toastr['success']('Dados salvos com sucesso!')}); </script>"; ?>
         <?php elseif (isset($_GET['reapprove']) && $_GET['reapprove'] == 'true') : ?>
-            <?php echo "<script>$(function () {toastr['success']('Reenviado para aprovação!')}); </script>";?>
+            <?php echo "<script>$(function () {toastr['success']('Reenviado para aprovação!')}); </script>"; ?>
         <?php elseif (isset($_GET['reapprove']) && $_GET['reapprove'] == 'error') : ?>
             <?php echo "<script> $(function () {toastr['warning']('Houve um erro ao reenviar para aprovação!') }); </script>"; ?>
         <?php elseif (isset($_GET['erro']) && $_GET['erro'] == 'true') : ?>
@@ -131,7 +131,7 @@ if (isset($funcionario)) {
                                 <fieldset>
                                     <legend>Dados Profissionais - Registro</legend>
                                     <div class="row">
-                                        <div class="col-md-4 col-xs-12">
+                                        <div class="col-md-3 col-xs-12">
                                             <div class="form-group">
                                                 <label for="admissao">Data de Admissão</label>
                                                 <input type="date" id="admissao" name="admissao" class="form-control" <?php if (isset($funcionario)) {
@@ -139,7 +139,7 @@ if (isset($funcionario)) {
                                                                                                                         } ?>>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 col-xs-12">
+                                        <div class="col-md-3 col-xs-12">
                                             <div class="form-group">
                                                 <label for="registro">Data de Registro</label>
                                                 <input type="date" id="registro" name="registro" class="form-control" <?php if (isset($funcionario)) {
@@ -147,7 +147,7 @@ if (isset($funcionario)) {
                                                                                                                         } ?>>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 col-xs-12">
+                                        <div class="col-md-3 col-xs-12">
                                             <div class="form-group">
                                                 <label for="cargo">Selecione o Cargo</label>
                                                 <select name="cargo" id="cargo" class="form-control">
@@ -158,6 +158,14 @@ if (isset($funcionario)) {
                                                 </select>
                                             </div>
                                         </div>
+                                        <!--div class="col-md-3 col-xs-12">
+                                            <div class="form-group">
+                                                <label for="salario">Salário Base</label>
+                                                <input type='currency' type="text" name="salario" class="form-control money" placeholder="" <?php if (isset($funcionario)) {
+                                                                                                                                echo "value='$funcionario->strFuncionarioSalarioBase'";
+                                                                                                                            } ?>>
+                                            </div>
+                                        </div-->
                                         <!--div class="col-md-12">
 
                                             <div class="form-group">
@@ -176,32 +184,32 @@ if (isset($funcionario)) {
                                         <div class="col-md-3 col-xs-12">
                                             <div class="form-group">
                                                 <label for="salario">Salário Base</label>
-                                                <input type="text" name="salario" class="form-control money" placeholder="" <?php if (isset($funcionario)) {
-                                                                                                                                                                echo "value='$funcionario->strFuncionarioSalarioBase'";
-                                                                                                                                                            } ?>>
+                                                <input type='currency' type="text" name="salario" class="form-control money" placeholder="" <?php if (isset($funcionario)) {
+                                                                                                                                echo "value='$funcionario->strFuncionarioSalarioBase'";
+                                                                                                                            } ?>>
                                             </div>
                                         </div>
 
                                         <div class="col-md-3 col-xs-12">
                                             <div class="form-group">
                                                 <label for="fora">Adicionais Eventuais</label>
-                                                <input type="text" name="fora" class="form-control money" placeholder="" <?php if (isset($funcionario)) {
-                                                                                                                                                            echo "value='$funcionario->strFuncionarioPorFora'";
-                                                                                                                                                        } ?>>
+                                                <input type='currency' type="text" name="fora" class="form-control money" placeholder="" <?php if (isset($funcionario)) {
+                                                                                                                                echo "value='$funcionario->strFuncionarioPorFora'";
+                                                                                                                            } ?>>
                                             </div>
                                         </div>
                                         <div class="col-md-3 col-xs-12">
                                             <div class="form-group">
                                                 <label for="creditos">Créditos</label>
-                                                <input type="text" name="creditos" class="form-control money" placeholder="" <?php if (isset($funcionario)) {
-                                                                                                                                                echo "value='$funcionario->strFuncionarioCreditos'";
-                                                                                                                                            } ?>>
+                                                <input type='currency' type="text" name="creditos" class="form-control money" placeholder="" <?php if (isset($funcionario)) {
+                                                                                                                                    echo "value='$funcionario->strFuncionarioCreditos'";
+                                                                                                                                } ?>>
                                             </div>
                                         </div>
                                         <div class="col-md-3 col-xs-12">
                                             <div class="form-group">
                                                 <label for="vr">Vale Refeição</label>
-                                                <input type="text" id="vr" name="vr" class="form-control money" placeholder="" <?php if (isset($funcionario)) {
+                                                <input type='currency' type="text" id="vr" name="vr" class="form-control money" placeholder="" <?php if (isset($funcionario)) {
                                                                                                                                     echo "value='$funcionario->strFuncionarioVR'";
                                                                                                                                 } ?>>
                                             </div>
@@ -209,7 +217,7 @@ if (isset($funcionario)) {
                                         <div class="col-md-3 col-xs-12">
                                             <div class="form-group">
                                                 <label for="conta">Vale Transporte</label>
-                                                <input type="text" id="vt" name="vt" class="form-control money" placeholder="" <?php if (isset($funcionario)) {
+                                                <input type='currency' type="text" id="vt" name="vt" class="form-control money" placeholder="" <?php if (isset($funcionario)) {
                                                                                                                                     echo "value='$funcionario->strFuncionarioVT'";
                                                                                                                                 } ?>>
                                             </div>
@@ -218,7 +226,7 @@ if (isset($funcionario)) {
                                         <div class="col-md-3 col-xs-12">
                                             <div class="form-group">
                                                 <label for="convenio">Convênio Básico</label>
-                                                <input type="text" id="convenio" name="convenio" class="form-control money" placeholder="" <?php if (isset($funcionario)) {
+                                                <input type='currency' type="text" id="convenio" name="convenio" class="form-control money" placeholder="" <?php if (isset($funcionario)) {
                                                                                                                                                 echo "value='$funcionario->strFuncionarioConvenio'";
                                                                                                                                             } ?>>
                                             </div>
@@ -227,18 +235,30 @@ if (isset($funcionario)) {
                                         <div class="col-md-3 col-xs-12">
                                             <div class="form-group">
                                                 <label for="conta">Adicional do Convênio (Plus)</label>
-                                                <input type="text" id="conta" name="ac" class="form-control money" placeholder="" <?php if (isset($funcionario)) {
-                                                                                                                                            echo "value='$funcionario->strFuncionarioAdicional'";
-                                                                                                                                        } ?>>
+                                                <input type='currency' type="text" id="conta" name="ac" class="form-control money" placeholder="" <?php if (isset($funcionario)) {
+                                                                                                                                        echo "value='$funcionario->strFuncionarioAdicional'";
+                                                                                                                                    } ?>>
                                             </div>
                                         </div>
 
                                         <div class="col-md-3 col-xs-12">
                                             <div class="form-group">
                                                 <label for="conta">Plano Odontológico</label>
-                                                <input id="conta" name="po" class="form-control money" placeholder="" <?php if (isset($funcionario)) {
-                                                                                                                                            echo "value='$funcionario->strFuncionarioPlanoOdontologico'";
-                                                                                                                                        } ?>>
+                                                <input type='currency' id="conta" name="po" class="form-control money" placeholder="" <?php if (isset($funcionario)) {
+                                                                                                                            echo "value='$funcionario->strFuncionarioPlanoOdontologico'";
+                                                                                                                        } ?>>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12">
+                                            <div class="form-group">
+                                                <label for="total_calculado">Total</label>
+                                                <input type='currency' id="total_calculado" class="form-control" style="resize: none"
+                                                    readonly disabled
+                                                    value="<?php if (isset($obj->decimalValorTotal) && $obj->decimalValorTotal) {
+                                                        echo $obj->decimalValorTotal;
+                                                    } ?>"
+                                                />
                                             </div>
                                         </div>
 
@@ -309,7 +329,7 @@ if (isset($funcionario)) {
                                                     <option value="31" <?php if (isset($funcionario->strFuncionarioDatePagamento) && $funcionario->strFuncionarioDatePagamento == '31') : echo "selected";
                                                                         endif; ?>>31</option>
                                                 </select>
-                                            </div>                                           
+                                            </div>
                                         </div>
                                     </div>
                                 </fieldset>
@@ -460,5 +480,18 @@ if (isset($funcionario)) {
         $('#celular').mask('(99) 99999-9999');
         $('#telefone').mask('(99) 9999-9999');
         $('#cnpj').mask('99.999.999/9999-99');
+
+
+        $("form input[type=currency]").change(function() {
+            var valor_total = 0;
+            $("form input[type=currency][id!=total_calculado]").each(function(index, element) {
+                var value = $(element).val();
+                if (value) {
+                    valor_total = valor_total + parseFloat(value.replace(".", "").replace(",", "."));
+                }
+            })
+            $("#total_calculado").val((valor_total.toFixed(2) + "").replace(".", ","))
+
+        })
     });
 </script>

@@ -20,7 +20,7 @@
             </button>
         <?php endif; ?>
             <button type="button" class="btn-sm btn-register btn-flat" data-toggle="modal" data-target="#modal-info">
-                <i class="fa fa-plus"></i> Cadastrar
+                <i class="fa fa-edit"></i> Cadastrar
             </button>
         </li>
       </ol>
@@ -36,7 +36,7 @@
     <?php endif; ?>
     <div class="box box-success">
         <div class="box-body">
-            <table id="data" class="table table-bordered table-striped">
+             <table class="table table-bordered table-striped smarttable2">
                 <thead>
                     <tr>
                         <th>Nome</th>

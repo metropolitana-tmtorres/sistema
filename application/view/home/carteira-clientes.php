@@ -10,12 +10,12 @@
       </h1>
       <ol class="breadcrumb">
         <li>
-            <button type="button" class="btn btn-info" onclick="window.history.go(-1); return false;">
+            <button type="button" class="btn-sm btn-goBack btn-flat" onclick="window.history.go(-1); return false;">
                 <i class="fa fa-arrow-left"></i> Voltar
             </button>
 
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-info">
-                    <i class="fa fa-plus"></i> Adicionar a Carteira
+            <button type="button" class="btn-sm btn-register btn-flat" data-toggle="modal" data-target="#modal-info">
+                    <i class="fa fa-edit"></i> Adicionar a Carteira
                 </button>
         </li>
       </ol>
@@ -25,9 +25,9 @@
     <section class="content container-fluid">
     <BR>
     <?php if(isset($_GET['salvo']) && $_GET['salvo'] == 'true') : ?>
-        <div class="alert alert-success">Dados salvos com sucesso</div>
+          <?php echo "<script>$(function () {toastr['success']('Dados salvos com sucesso!')}); </script>"; ?>
     <?php elseif(isset($_GET['erro']) && $_GET['erro'] == 'true') : ?>
-        <div class="alert alert-danger">Houve um erro ao salvar os dados. Caso persista contato o administrador do sistema.</div>
+           <?php echo "<script> $(function () {toastr['warning']('Houve um erro ao salvar os dados. Caso persista contato o administrador do sistema.') }); </script>"; ?>
     <?php elseif(isset($_GET['add']) && $_GET['add'] == 'true') : ?>
         <div class="alert alert-danger">Por favor, cadastre o cliente <?php echo $_GET['client']; ?> utilizando o botão "Cadastrar" ao lado.</div>
     <?php elseif(isset($_GET['clienteAdded']) && $_GET['clienteAdded'] == 'true') : ?>
@@ -58,7 +58,7 @@
             </form>
             <?php if(isset($clients)) : ?>
                 <br><br><h3>Clientes</h3>
-                <table class="table table-bordered table-striped smarttable">
+                <table class="table table-bordered table-striped smarttable2">
                     <thead>
                         <tr>
                             <th>Cliente</th>

@@ -8,11 +8,11 @@
         </h1>
         <!--ol class="breadcrumb">
             <li>
-                <button type="button" class="btn btn-info" onclick="window.history.go(-1); return false;">
+                <button type="button" class="btn-sm btn-goBack btn-flat" onclick="window.history.go(-1); return false;">
                     <i class="fa fa-arrow-left"></i> Voltar
                 </button>
-                <button type="button" class="btn btn-info" onclick="window.location.href='<?php echo URL; ?>home/fornecedorform'">
-                    <i class="fa fa-plus"></i> Cadastrar
+                <button type="button" class="btn-sm btn-goBack btn-flat" onclick="window.location.href='<?php echo URL; ?>home/fornecedorform'">
+                    <i class="fa fa-edit"></i> Cadastrar
                 </button>
             </li>
         </ol-->
@@ -44,7 +44,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($funcionario as $f) : ?>
+                        <?php foreach ($funcionario as $f) :
+                            
+                            //$nome = $this->funcionarioModel->getFuncionarioByID($f->intFuncionarioID); 
+                            //echo "<pre>", var_dump ($nome), "</pre>";
+
+                            ?>
                             <tr>
                                 <td><?php echo $f->strFuncionarioNome; ?></td>
                                 <td><?php echo substr($f->strReproveReason, 0, 25).'...'; ?></td>

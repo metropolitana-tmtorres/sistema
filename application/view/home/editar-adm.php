@@ -10,11 +10,11 @@
       </h1>
       <ol class="breadcrumb">
         <li>
-            <button type="button" class="btn btn-info" onclick="window.history.go(-1); return false;">
+            <button type="button" class="btn-sm btn-goBack btn-flat" onclick="window.history.go(-1); return false;">
                 <i class="fa fa-arrow-left"></i> Voltar
             </button>
-            <!-- <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-info">
-                <i class="fa fa-plus"></i> Cadastrar
+            <!-- <button type="button" class="btn-sm btn-goBack btn-flat" data-toggle="modal" data-target="#modal-info">
+                <i class="fa fa-edit"></i> Cadastrar
             </button> -->
         </li>
       </ol>

@@ -10,7 +10,7 @@
       </h1>
       <ol class="breadcrumb">
         <li>
-            <a href="<?php echo URL; ?>home/createbriefing/<?php echo $crm; ?>/<?php echo $brief; ?>" class="btn btn-info">
+            <a href="<?php echo URL; ?>home/createbriefing/<?php echo $crm; ?>/<?php echo $brief; ?>" class="btn-sm btn-goBack btn-flat">
                 <i class="fa fa-arrow-left"></i> Voltar
             </a>
         </li>
@@ -21,9 +21,9 @@
     <section class="content container-fluid">
     <BR>
     <?php if(isset($_GET['salvo']) && $_GET['salvo'] == 'true') : ?>
-        <div class="alert alert-success">Dados salvos com sucesso</div>
+          <?php echo "<script>$(function () {toastr['success']('Dados salvos com sucesso!')}); </script>"; ?>
     <?php elseif(isset($_GET['erro']) && $_GET['erro'] == 'true') : ?>
-        <div class="alert alert-danger">Houve um erro ao salvar os dados</div>
+            <?php echo "<script> $(function () {toastr['warning']('Houve um erro ao salvar os dados. Caso persista contato o administrador do sistema.') }); </script>"; ?>
     <?php endif; ?>
     <div class="box">
         <div class="box-header">
@@ -64,7 +64,7 @@
                     </div>
                 </div>
             </form>
-            <table id="data" class="table table-bordered table-striped">
+             <table class="table table-bordered table-striped smarttable2">
                 <thead>
                     <tr>
                         <th>Data</th>

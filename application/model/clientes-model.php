@@ -361,4 +361,5 @@ class clientesModel
         // echo mysqli_error($db); exit;
         return $query->fetch();
     }
+
 }

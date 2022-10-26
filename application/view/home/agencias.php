@@ -11,16 +11,16 @@
       <ol class="breadcrumb">
         <li>
         <?php if(isset($_GET['salvo'])) : ?>
-            <button type="button" class="btn btn-info" onclick="window.location.href = '<?php echo URL; ?>/home/crm';">
+            <button type="button" class="btn-sm btn-goBack btn-flat" onclick="window.location.href = '<?php echo URL; ?>/home/crm';">
                 <i class="fa fa-arrow-left"></i> Voltar
             </button>
         <?php else: ?>
-            <button type="button" class="btn btn-info" onclick="window.history.go(-1); return false;">
+            <button type="button" class="btn-sm btn-goBack btn-flat" onclick="window.history.go(-1); return false;">
                 <i class="fa fa-arrow-left"></i> Voltar
             </button>
         <?php endif; ?>
-            <button type="button" class="btn btn-info" onclick="window.location.href='<?php echo URL; ?>home/agenciaform'">
-                <i class="fa fa-plus"></i> Cadastrar
+            <button type="button" class="btn-sm btn-register btn-flat" onclick="window.location.href='<?php echo URL; ?>home/agenciaform'">
+                <i class="fa fa-edit"></i> Cadastrar
             </button>
         </li>
       </ol>
@@ -30,17 +30,14 @@
     <section class="content container-fluid">
     <BR>
     <?php if(isset($_GET['salvo']) && $_GET['salvo'] == 'true') : ?>
-        <div class="alert alert-success">Dados salvos com sucesso</div>
+        <?php echo "<script>$(function () {toastr['success']('Dados salvos com sucesso!')}); </script>"; ?>
     <?php elseif(isset($_GET['erro']) && $_GET['erro'] == 'true') : ?>
-        <div class="alert alert-danger">Houve um erro ao salvar os dados. Caso persista contato o administrador do sistema.</div>
+        <?php echo "<script> $(function () {toastr['warning']('Houve um erro ao salvar os dados. Caso persista contato o administrador do sistema.') }); </script>"; ?>
     <?php endif; ?>
     <div class="box">
-        <div class="box-header">
-            <h3 class="box-title">Agências Cadastradas</h3>
-        </div>
         <!-- /.box-header -->
         <div class="box-body">
-            <table class="table table-bordered table-striped smarttable">
+            <table class="table table-bordered table-striped smarttable2">
                 <thead>
                     <tr>
                         <th>Nome Fantasia</th>
@@ -48,7 +45,7 @@
                         <th>E-Mail</th>
                         <th>Telefone</th>
                         <th>CNPJ</th>
-                        <th>Editar</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,20 +56,13 @@
                             <td><?php echo $a->strAgenciaEmail; ?></td>
                             <td><?php echo $a->strAgenciaTelefone; ?></td>
                             <td><?php echo $a->strAgenciaCNPJ; ?></td>
-                            <td><a href="<?php echo URL; ?>home/agenciaform/<?php echo $a->intAgenciaID; ?>" title="Editar Cliente">Editar</a></td>
+                            <td>
+                                <a class="btn-sm bg-orange btn-flat" href="<?php echo URL; ?>home/agenciaform/<?php echo $a->intAgenciaID; ?>" title="Editar Cliente"><i class="fa fa-edit"></i> Editar</a>
+                                <a class="btn-sm btn-cancel btn-flat" href="<?php echo URL; ?>home/excluiragencia/<?php echo $a->intAgenciaID; ?>"><i class="fa fa-close"></i> Excluir</a>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Nome Fantasia</th>
-                        <th>Contato</th>
-                        <th>E-Mail</th>
-                        <th>Telefone</th>
-                        <th>CNPJ</th>
-                        <th>Editar</th>
-                    </tr>
-                </tfoot>
             </table>
         </div>
         <!-- /.box-body -->

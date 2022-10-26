@@ -8,11 +8,11 @@
         </h1>
         <ol class="breadcrumb">
             <li>
-                <button type="button" class="btn btn-info" onclick="window.history.go(-1); return false;">
+                <button type="button" class="btn-sm btn-goBack btn-flat" onclick="window.history.go(-1); return false;">
                     <i class="fa fa-arrow-left"></i> Voltar
                 </button>
-                <button type="button" class="btn btn-info" onclick="window.location.href='<?php echo URL; ?>home/fornecedorform'">
-                    <i class="fa fa-plus"></i> Cadastrar
+                <button type="button" class="btn-sm btn-goBack btn-flat" onclick="window.location.href='<?php echo URL; ?>home/fornecedorform'">
+                    <i class="fa fa-edit"></i> Cadastrar
                 </button>
             </li>
         </ol>
@@ -22,9 +22,9 @@
     <section class="content container-fluid">
         <BR>
         <?php if (isset($_GET['salvo']) && $_GET['salvo'] == 'true') : ?>
-            <div class="alert alert-success">Dados salvos com sucesso</div>
+              <?php echo "<script>$(function () {toastr['success']('Dados salvos com sucesso!')}); </script>"; ?>
         <?php elseif (isset($_GET['erro']) && $_GET['erro'] == 'true') : ?>
-            <div class="alert alert-danger">Houve um erro ao salvar os dados. Caso persista contato o administrador do sistema.</div>
+               <?php echo "<script> $(function () {toastr['warning']('Houve um erro ao salvar os dados. Caso persista contato o administrador do sistema.') }); </script>"; ?>
         <?php endif; ?>
         <div class="box">
             <div class="box-header">

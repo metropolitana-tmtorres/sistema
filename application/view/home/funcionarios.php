@@ -20,7 +20,7 @@
             </button>
         <?php endif; ?>
             <button type="button" class="btn-sm btn-register btn-flat" onclick="window.location.href='<?=URL; ?>home/cadastrarfuncionario'">
-                <i class="fa fa-plus"></i> Cadastrar 
+                <i class="fa fa-edit"></i> Cadastrar 
             </button>
         </li>
       </ol>

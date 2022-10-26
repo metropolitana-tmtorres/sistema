@@ -13,9 +13,9 @@
     <section class="content container-fluid">
         <BR>
         <?php if (isset($_GET['salvo']) && $_GET['salvo'] == 'true') : ?>
-            <div class="alert alert-success">Dados salvos com sucesso</div>
+              <?php echo "<script>$(function () {toastr['success']('Dados salvos com sucesso!')}); </script>"; ?>
         <?php elseif (isset($_GET['erro']) && $_GET['erro'] == 'true') : ?>
-            <div class="alert alert-danger">Houve um erro ao salvar os dados. Caso persista contato o administrador do sistema.</div>
+               <?php echo "<script> $(function () {toastr['warning']('Houve um erro ao salvar os dados. Caso persista contato o administrador do sistema.') }); </script>"; ?>
         <?php elseif (isset($_GET['approved']) && $_GET['approved'] == 'true') : ?>
             <div class="alert alert-success">Solicitação aprovada com sucesso!</div>
         <?php elseif (isset($_GET['approved']) && $_GET['approved'] == 'error') : ?>
@@ -42,10 +42,7 @@
                         </thead>
                         <tbody>
                             <?php
-                            foreach ($clientes as $c) :
-                                $nome = $this->admModel->getAdmNameByID($c->intUserAdmID);
-                                var_dump($nome);
-                            ?>
+                            foreach ($clientes as $c) :?>
                                 <tr>
                                     <td><?= $c->strClienteFantasia; ?></a></td>
                                     <td><?= $c->strAdmNome; ?></td>
@@ -91,7 +88,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="hidden" name="id" value="<?= $co->intContaID; ?>">
+                        <input type="hidden" name="id" value="<?= $c->intContaID; ?>">
                         <input type="hidden" name="adm" value="<?= $adm->strAdmNome; ?>">
                         <input type="hidden" name="solicitante" value="<?= $c->strAdmNome; ?>">
                         <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Fechar</button>

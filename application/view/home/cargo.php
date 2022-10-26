@@ -18,7 +18,7 @@
                     </button>
                 <?php endif; ?>
                 <button type="button" class="btn-sm btn-register btn-flat" data-toggle="modal" data-target="#modal-info">
-                    <i class="fa fa-plus"></i> Cadastrar
+                    <i class="fa fa-edit"></i> Cadastrar
                 </button>
             </li>
         </ol>
@@ -28,9 +28,9 @@
     <section class="content container-fluid">
         <BR>
         <?php if (isset($_GET['salvo']) && $_GET['salvo'] == 'true') : ?>
-            <div class="alert alert-success">Dados salvos com sucesso</div>
+              <?php echo "<script>$(function () {toastr['success']('Dados salvos com sucesso!')}); </script>"; ?>
         <?php elseif (isset($_GET['erro']) && $_GET['erro'] == 'true') : ?>
-            <div class="alert alert-danger">Houve um erro ao salvar os dados</div>
+                <?php echo "<script> $(function () {toastr['warning']('Houve um erro ao salvar os dados. Caso persista contato o administrador do sistema.') }); </script>"; ?>
         <?php endif; ?>
         <div class="box box-primary">
             <!--div class="box-header">

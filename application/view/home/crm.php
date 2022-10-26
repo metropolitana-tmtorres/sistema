@@ -12,17 +12,17 @@
       <ol class="breadcrumb">
         <li>
         <?php if(isset($_GET['salvo'])) : ?>
-            <button type="button" class="btn btn-info" onclick="window.location.href = '<?php echo URL; ?>/home/dashboard';">
+            <button type="button" class="btn-sm btn-goBack btn-flat" onclick="window.location.href = '<?php echo URL; ?>/home/dashboard';">
                 <i class="fa fa-arrow-left"></i> Voltar
             </button>
         <?php else: ?>
-            <button type="button" class="btn btn-info" onclick="window.history.go(-1); return false;">
+            <button type="button" class="btn-sm btn-goBack btn-flat" onclick="window.history.go(-1); return false;">
                 <i class="fa fa-arrow-left"></i> Voltar
             </button>
         <?php endif; ?>
             <?php if(in_array('crm-add', $permissions)) : ?>
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-info">
-                    <i class="fa fa-plus"></i> Cadastrar
+                <button type="button" class="btn-sm btn-register btn-flat" data-toggle="modal" data-target="#modal-info">
+                    <i class="fa fa-edit"></i> Cadastrar
                 </button>
             <?php endif; ?>
         </li>
@@ -33,13 +33,13 @@
     <section class="content container-fluid">
     <BR>
     <?php if(isset($_GET['salvo']) && $_GET['salvo'] == 'true') : ?>
-        <div class="alert alert-success">Dados salvos com sucesso</div>
+          <?php echo "<script>$(function () {toastr['success']('Dados salvos com sucesso!')}); </script>"; ?>
     <?php elseif(isset($_GET['erro']) && $_GET['erro'] == 'true') : ?>
-        <div class="alert alert-danger">Houve um erro ao salvar os dados</div>
+            <?php echo "<script> $(function () {toastr['warning']('Houve um erro ao salvar os dados. Caso persista contato o administrador do sistema.') }); </script>"; ?>
     <?php endif; ?>
 
     <br>
-    <div class="container">
+    <!--div class="container">
         <div class="row">
             <div class="com-md-12">
                 <form action="<?php echo URL; ?>home/crm" class="form-inline pull-right" method="post">
@@ -57,8 +57,8 @@
                 </form>
             </div>
         </div>
-    </div>
-    <br><br>
+    </div-->
+
 
     <div class="box">
         <div class="box-header">
@@ -66,7 +66,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-            <table class="table table-bordered table-striped smarttable">
+            <table class="table table-bordered table-striped smarttable2">
                 <thead>
                     <tr>
                         <th>Código</th>
@@ -117,15 +117,6 @@
                         </tr>
                     <?php endif; ?>
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Código</th>
-                        <th>Cliente</th>
-                        <th>Conta</th>
-                        <th>Segmento</th>
-                        <th>Status</th>
-                    </tr>
-                </tfoot>
             </table>
         </div>
         <!-- /.box-body -->
