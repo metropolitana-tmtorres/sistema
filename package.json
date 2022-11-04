@@ -1,0 +1,21 @@
+{
+  "name": "sistema_metropolitanafm",
+  "version": "1.0.0",
+  "description": "Sistema desenvolvido para administrar todos os departamentos da MetropolitanaFM de forma conjunta.",
+  "main": "application.js",
+  "scripts": {
+    "watch:sass": "node-sass public/sass/main.scss public/css/style.css -w",
+    "start": "npm-run-all --parallel watch:sass",
+    "compile:sass": "node-sass public/sass/main.scss public/css/style.comp.css",
+    "prefix:css": "postcss --use autoprefixer -b 'last 10 versions' public/css/style.comp.css -o public/css/style.prefix.css",
+    "compress:css": "node-sass public/css/style.prefix.css public/css/style.css --output-style compressed",
+    "build:css": "npm-run-all compile:sass prefix:css compress:css"
+  },
+  "repository": {},
+  "keywords": [],
+  "author": "MetropolitanaFM",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.2.2"
+  }
+}
